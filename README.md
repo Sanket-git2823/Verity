@@ -1,3 +1,11 @@
+<img width="1535" height="746" alt="Screenshot 2026-11-07 195414" src="https://github.com/user-attachments/assets/3fd359b1-1b0c-4e59-b677-4990a4e1e2d5" />
+
+
+
+
+
+
+
 # Verity — Research Intelligence & Retrieval Engine
 
 **Verity** is a production-grade Retrieval-Augmented Generation (RAG) platform designed for research-intensive workflows. It ingests documents, chunks and indexes them using hybrid retrieval (BM25 + vector similarity), re-ranks results with a cross-encoder, and generates grounded, citation-backed answers using a large language model.
