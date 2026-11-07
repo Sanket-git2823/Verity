@@ -1,0 +1,29 @@
+Distributed Computing and Consensus Algorithms
+
+Introduction
+
+Distributed computing refers to systems in which multiple autonomous computers coordinate to achieve a common goal, communicating over a network. These systems offer fault tolerance, scalability, and geographic availability, but introduce fundamental challenges around consistency, availability, and partition tolerance — the well-known CAP theorem trade-off. At the heart of distributed system design lies the problem of consensus: ensuring that all correct nodes in the system agree on a single value or a consistent sequence of operations, even when some nodes or network links fail.
+
+The Consensus Problem
+
+Consensus is formally defined as follows: a set of processes each propose a value, and they must collectively decide on a single value such that (1) only a proposed value may be decided (validity), (2) no two correct processes decide differently (agreement), and (3) every correct process eventually decides (termination). The FLP impossibility result proved that deterministic consensus is impossible in an asynchronous system with even one faulty process, motivating the use of timeouts, randomization, and partial synchrony assumptions in practical algorithms.
+
+Paxos
+
+Paxos, introduced by Leslie Lamport, is the foundational consensus algorithm. It operates in two main phases. In the prepare phase, a proposer selects a proposal number and sends prepare requests to a majority of acceptors. Each acceptor promises not to accept proposals with lower numbers and returns any previously accepted value. In the accept phase, the proposer sends an accept request with the highest-numbered previously accepted value (or its own value if none exists). Once a majority of acceptors accept, the value is chosen. Multi-Paxos extends this to a sequence of consensus instances, enabling a replicated state machine where a stable leader drives most decisions in a single round trip.
+
+Raft
+
+Raft was designed as an understandable alternative to Paxos, decomposing consensus into three relatively independent sub-problems: leader election, log replication, and safety. In Raft, one node is elected leader and is responsible for accepting client requests, appending entries to its log, and replicating them to follower nodes. A log entry is committed once a majority of nodes have durably stored it. If the leader fails, followers detect the absence of heartbeats and initiate a new election. Raft's clarity has made it the consensus algorithm of choice in systems like etcd, CockroachDB, and TiKV.
+
+Byzantine Fault Tolerance
+
+Paxos and Raft assume crash-fault models where failed nodes simply stop responding. Byzantine Fault Tolerance (BFT) algorithms handle the more adversarial scenario where faulty nodes may send arbitrary or malicious messages. Practical BFT (PBFT) tolerates up to f Byzantine faults among 3f+1 nodes through a three-phase protocol (pre-prepare, prepare, commit) that ensures all correct replicas agree on request ordering. BFT is critical for blockchain systems and untrusted environments but incurs higher communication overhead than crash-fault protocols.
+
+Applications in Modern Systems
+
+Consensus algorithms underpin many critical distributed systems. Apache ZooKeeper uses a protocol inspired by Paxos to provide distributed configuration management and leader election. Google's Spanner uses Paxos-based replication combined with TrueTime to offer globally distributed, strongly consistent transactions. Kubernetes relies on etcd (which uses Raft) for cluster state storage. Understanding consensus is essential for anyone designing systems that must remain correct and available in the face of partial failures.
+
+Conclusion
+
+Consensus algorithms are the foundation of reliable distributed computing. From Paxos to Raft to Byzantine protocols, each approach offers different trade-offs between complexity, performance, and fault model assumptions. As distributed systems grow in scale and importance, mastery of these algorithms remains a core competency for systems engineers.

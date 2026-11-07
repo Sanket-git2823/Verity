@@ -1,0 +1,66 @@
+{
+  "name": "verity-baseline-eval",
+  "description": "Baseline evaluation dataset for retrieval quality assessment",
+  "items": [
+    {
+      "query_text": "What are the main categories of optimization algorithms used in machine learning?",
+      "expected_answer": "The main categories include first-order methods such as gradient descent and its variants (SGD, Adam, AdaGrad, RMSProp), second-order methods like Newton's method and L-BFGS, and evolutionary or metaheuristic approaches. First-order methods use gradient information, while second-order methods also leverage curvature via the Hessian matrix.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "How does the inverted index structure work in information retrieval systems?",
+      "expected_answer": "An inverted index maps each unique term in a document collection to a postings list that records which documents contain that term, along with metadata such as term frequency and positional information. During query processing, the engine looks up each query term in the index, retrieves the corresponding postings lists, and merges them to identify matching documents.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "What is the self-attention mechanism in transformer architectures?",
+      "expected_answer": "Self-attention computes a weighted representation of each token in a sequence by comparing it against all other tokens. It projects the input into query, key, and value vectors, calculates attention scores as the scaled dot product of queries and keys, applies softmax normalization, and then produces a weighted sum of the value vectors. This allows the model to capture long-range dependencies without recurrence.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "What indexing strategies are commonly used in database management systems?",
+      "expected_answer": "Common indexing strategies include B-tree indexes for range and equality queries, hash indexes for fast equality lookups, bitmap indexes for low-cardinality columns, GiST and GIN indexes for full-text and geometric data, and LSM-tree based indexes for write-heavy workloads. Each strategy offers different trade-offs between read performance, write performance, and storage overhead.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "How do consensus algorithms ensure consistency in distributed systems?",
+      "expected_answer": "Consensus algorithms such as Paxos and Raft ensure that all non-faulty nodes in a distributed system agree on a single value or sequence of operations, even in the presence of failures. They typically operate through leader election, log replication, and commitment phases, guaranteeing safety (no two nodes decide differently) and liveness (the system eventually makes progress) under defined fault models.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "What techniques help prevent overfitting during neural network training?",
+      "expected_answer": "Techniques to prevent overfitting include regularization methods (L1, L2, dropout), data augmentation, early stopping based on validation loss, batch normalization, weight decay, and using architectures with appropriate capacity. Ensemble methods and cross-validation also help assess and reduce generalization error.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "How does BM25 scoring differ from TF-IDF in document ranking?",
+      "expected_answer": "BM25 extends TF-IDF by introducing term frequency saturation (so additional occurrences of a term yield diminishing returns) and document length normalization controlled by parameters k1 and b. While TF-IDF uses raw or log-scaled term frequency multiplied by inverse document frequency, BM25 applies a non-linear saturation function and adjusts for document length relative to the average, producing more robust rankings.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "What is the role of the learning rate schedule in training deep learning models?",
+      "expected_answer": "The learning rate schedule controls how the learning rate changes over the course of training. Common strategies include step decay, exponential decay, cosine annealing, and warm-up followed by decay. A well-chosen schedule helps the optimizer converge faster in early training and fine-tune more precisely near a minimum, improving both training speed and final model quality.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "What are the trade-offs between horizontal and vertical scaling in distributed databases?",
+      "expected_answer": "Vertical scaling (scale-up) adds resources to a single machine and is simpler to manage but has hardware limits and a single point of failure. Horizontal scaling (scale-out) distributes data across multiple nodes, offering near-linear scalability and fault tolerance, but introduces complexity in data partitioning, replication, consistency management, and cross-node query coordination.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    },
+    {
+      "query_text": "How do multi-head attention layers improve representation learning in transformers?",
+      "expected_answer": "Multi-head attention runs several attention functions in parallel, each with its own learned query, key, and value projections. This allows the model to jointly attend to information from different representation subspaces at different positions. The outputs of all heads are concatenated and linearly projected, enabling the model to capture diverse patterns such as syntactic relationships, semantic similarity, and positional dependencies simultaneously.",
+      "relevant_document_ids": [],
+      "relevant_chunk_ids": []
+    }
+  ]
+}

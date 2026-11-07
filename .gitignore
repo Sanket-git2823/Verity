@@ -1,0 +1,67 @@
+# ============================================================================
+# Verity .gitignore
+# ============================================================================
+
+# --- Environment & Secrets ----------------------------------------------------
+.env
+.env.local
+.env.production
+.env.*.local
+
+# --- Python -------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+*.whl
+.venv/
+venv/
+env/
+pip-log.txt
+pip-delete-this-directory.txt
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+coverage.xml
+*.cover
+
+# --- Node.js / Next.js --------------------------------------------------------
+node_modules/
+.next/
+out/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# --- IDE & Editor -------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# --- Docker -------------------------------------------------------------------
+docker-compose.override.yml
+
+# --- Uploads & Generated Data -------------------------------------------------
+uploads/
+*.sqlite3
+
+# --- OS -----------------------------------------------------------------------
+.DS_Store
+Desktop.ini
+ehthumbs.db

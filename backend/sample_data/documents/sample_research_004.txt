@@ -1,0 +1,29 @@
+Database Systems and Indexing Strategies
+
+Overview
+
+Database management systems (DBMS) are the backbone of virtually every data-driven application, from e-commerce platforms to scientific research repositories. At their core, databases provide structured storage, efficient retrieval, transactional guarantees, and concurrent access control. The performance of a database system depends heavily on its indexing strategy — the data structures and algorithms it uses to locate records without scanning the entire dataset.
+
+B-Tree Indexes
+
+The B-tree and its variant the B+ tree are the most widely deployed index structures in relational databases. A B+ tree is a balanced, multi-way search tree where all data pointers reside in the leaf nodes, which are linked together for efficient range scans. Internal nodes contain only keys and child pointers, maximizing the fan-out and minimizing tree height. For a table with millions of rows, a B+ tree index typically requires only three or four disk seeks to locate any record. B-tree indexes support both equality lookups (WHERE id = 42) and range queries (WHERE price BETWEEN 10 AND 50) efficiently.
+
+Hash Indexes
+
+Hash indexes use a hash function to map key values directly to storage locations (buckets). They offer O(1) average-case lookup for equality queries, making them faster than B-trees for exact-match access patterns. However, hash indexes do not support range queries or ordered scans. They are most useful for join operations on equality predicates and primary key lookups. Some databases, such as PostgreSQL, support hash indexes but recommend B-trees as the default due to their greater versatility.
+
+Bitmap Indexes
+
+Bitmap indexes represent each distinct value of a column as a bit vector with one bit per row. They are particularly efficient for columns with low cardinality — gender, boolean flags, status codes — where each distinct value covers a significant fraction of rows. Bitmap indexes support fast AND, OR, and NOT operations through bitwise logic, making them well suited for complex analytical queries that filter on multiple low-cardinality columns simultaneously. They are a staple of data warehousing systems like Oracle and Vertica.
+
+GIN and GiST Indexes
+
+PostgreSQL extends traditional indexing with Generalized Inverted Indexes (GIN) and Generalized Search Trees (GiST). GIN indexes are optimized for composite values — arrays, JSON documents, and full-text search tsvectors — where a single row may contain multiple indexable elements. GiST indexes support spatial data types (points, polygons, ranges) and enable operations like containment, intersection, and nearest-neighbor search. Together, GIN and GiST make PostgreSQL a powerful platform for semi-structured and geospatial data.
+
+LSM-Tree Indexes
+
+Log-Structured Merge-Trees (LSM-trees) are designed for write-heavy workloads. Instead of updating an on-disk tree in place, writes are buffered in an in-memory component (memtable) and periodically flushed to sorted on-disk files (SSTables). Background compaction merges and deduplicates these files. LSM-trees trade read performance for write throughput — reads may need to consult multiple levels — but bloom filters and block caches mitigate this cost. LSM-trees power storage engines like RocksDB, LevelDB, and Apache Cassandra.
+
+Choosing the Right Index
+
+Selecting an appropriate index involves understanding the workload: read-heavy versus write-heavy, equality versus range queries, low versus high cardinality, point lookups versus full scans. Over-indexing wastes storage and slows writes; under-indexing forces expensive sequential scans. Query planners use cost-based optimization to decide when to employ an index and when a sequential scan is more efficient.
